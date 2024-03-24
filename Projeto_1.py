@@ -223,7 +223,7 @@ class CartaTrafegabilidade(QgsProcessingAlgorithm):
         raioMataCiliar =  self.parameterAsDouble(
             parameters, 
             self.RMC,
-            context
+            context)
         
         # If source was not found, throw an exception to indicate that the algorithm
         # encountered a fatal error. The exception text can be any string, but in this
@@ -269,7 +269,7 @@ class CartaTrafegabilidade(QgsProcessingAlgorithm):
 
         #Obter via de deslocamento 
         viaDeslocamento = processing.run("native:buffer", 
-            {'INPUT':vias
+            {'INPUT':vias,
              'DISTANCE':raioVia,
              'SEGMENTS':5,
              'END_CAP_STYLE':0,
@@ -302,7 +302,7 @@ class CartaTrafegabilidade(QgsProcessingAlgorithm):
              'MITER_LIMIT':2,
              'DISSOLVE':False,
              'SEPARATE_DISJOINT':False,
-             'OUTPUT':'TEMPORARY_OUTPUT'}))
+             'OUTPUT':'TEMPORARY_OUTPUT'})
         
         # Extrair Vias de deslocamento federal
         viaFederal = processing.run("native:extractbyexpression", 
